@@ -9,3 +9,5 @@
 - PasswordResetConfirmView : 사용자가 패스워드를 설정할 수 있다.
 - PasswordResetCompleteView : 사용자가 패스워드를 성공적으로 재설정한 후 리디렉션 되는 성공 뷰이다.
 
+
+python .\manage.py runserver_plus --cert-file .\cert.crt
