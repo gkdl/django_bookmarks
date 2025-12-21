@@ -24,6 +24,7 @@ boxHtml = `
 body.innerHTML += boxHtml;
 
 function bookmarkletLaunch() {
+    console.log('bookmarklet launched');
   let bookmarklet = document.getElementById('bookmarklet');
   let imagesFound = bookmarklet.querySelector('.images');
 

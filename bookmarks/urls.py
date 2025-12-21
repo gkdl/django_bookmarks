@@ -25,7 +25,7 @@ urlpatterns = [
     path('social-auth/',
          include('social_django.urls', namespace='social')),
     path('images/', include('images.urls', namespace='images')),
-
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 # static 함수는 개발용으로는 적합하지만 운영용으로는 적합하지 않다. 장고는 정적 파일을 제공하는 데 매우 비효율적이다.

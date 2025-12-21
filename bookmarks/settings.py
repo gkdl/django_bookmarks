@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.urls import reverse_lazy
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     # Group : 사용자를 분류하기 위한 그룹 모델이다.
     # Permission: 사용자 또는 그룹이 특정 작업을 수행하기 위한 플래그
     'django.contrib.auth',
+    # django.contrib.contenttypes 애플리케이션은 startproject 명령을 사용해서 새로운 프로젝트를 생성할 때 기본적으로 INSTALLED_APPS 설정에 포함된다.
+    # contenttypes 애플리케이션에는 ContentType 모델이 있다.
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -56,9 +59,12 @@ INSTALLED_APPS = [
     'django_extensions',
     'images.apps.ImagesConfig',
     'easy_thumbnails',
+    'actions.apps.ActionsConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -184,3 +190,22 @@ SOCIAL_AUTH_PIPELINE = [
 ]
 
 THUMBNAIL_DEBUG = True
+# 장고는 get_absolute_url 메서드를 ABSOLUTE_URL_OVERRIDES 설정에 표시된 모든 모델에 동적으로 추가한다.
+# 이 메서드에 지정된 모델에 해당하는 URL을 반환한다.
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail',
+                                        args=[u.username])
+}
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type('application/javascript', '.js', True)
+    mimetypes.add_type('text/css', '.css', True)
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0

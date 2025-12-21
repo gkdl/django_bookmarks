@@ -28,3 +28,13 @@
 
 **한 줄 요약:**  
 WSGI = 동기 서버 진입점(`wsgi.py`), ASGI = 비동기 서버 진입점(`asgi.py`), 기능과 사용 환경이 달라진다.
+
+
+### 시그널
+- 장고는 특정 작업이 발생할 때 수신자 함수가 알림을 받을 수 있는 시그널 디스패처가 함께 제공된다.
+- 시그널은 어떤 일이 발생할 때마다 코드가 무언가를 수행해야 할 때 매우 유용하다.
+- pre_save 및 post_save는 모델의 save 메서드를 호출하기 전이나 후에 발생한다.
+- pre_delete 및 post_delete는 모델 또는 QuerySet의 delete 메서드를 호출하기 전이나 후에 발생한다.
+- m2m_changed는 모델의 ManyToManyField가 변경될 때 발생한다.
+
+python .\manage.py runserver_plus --cert-file .\cert.crt
