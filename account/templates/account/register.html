@@ -6,6 +6,8 @@
   <h1>Create an account</h1>
   <p>Please, sign up using the following form:</p>
   <form method="post">
+    <!-- as_p: 각 필드를 <p> 태그로 감싸서 출력해줘 라는 뜻. -->
+    <!-- as_table, as_ul 등의 방식도 있다 -->
     {{ user_form.as_p }}
     {% csrf_token %}
     <p><input type="submit" value="Create my account"></p>
